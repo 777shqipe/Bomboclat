@@ -27,23 +27,6 @@ class StorageArchiveFragment : Fragment() {
             "MILITARY_EQUIPMENT" to "https://www.militariainroma.com/wp-content/uploads/2025/04/IMG_9350.jpeg"
         )
 
-        // Carico le immagini nelle card
-        Glide.with(this)
-            .load(artifactImageUrls["TANKS"])
-            .placeholder(R.drawable.placeholder_shape)
-            .into(view.findViewById(R.id.image_card1))
-        Glide.with(this)
-            .load(artifactImageUrls["PORTABLE_FIREARMS"])
-            .placeholder(R.drawable.placeholder_shape)
-            .into(view.findViewById(R.id.image_card2))
-        Glide.with(this)
-            .load(artifactImageUrls["EDGED_WEAPONS"])
-            .placeholder(R.drawable.placeholder_shape)
-            .into(view.findViewById(R.id.image_card4))
-        Glide.with(this)
-            .load(artifactImageUrls["MILITARY_EQUIPMENT"])
-            .placeholder(R.drawable.placeholder_shape)
-            .into(view.findViewById(R.id.image_card5))
 
         // Listener per le 4 card
         view.findViewById<View>(R.id.card1).setOnClickListener {

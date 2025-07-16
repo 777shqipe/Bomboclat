@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/back_home">
+    android:background="@color/final_background_app"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:windowSoftInputMode="adjustResize">
 
     <ImageButton
         android:id="@+id/backButton"
@@ -36,4 +39,4 @@
         android:paddingBottom="8dp"
         android:clipToPadding="false"/>
 
-</LinearLayout> 
+</LinearLayout>

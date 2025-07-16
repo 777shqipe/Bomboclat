@@ -49,6 +49,6 @@
     <color name="calendar_selected_day_background_green">@color/app_primary_green</color>
     <color name="calendar_selected_day_text_white">@color/white</color>
     <color name="date_picker_selected_bg">#E3D4C2</color>
-    <color name="back_final">#F5F5F5</color>
+    <color name="final_background_app">#E3D4C2</color>
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.InfoFragment"
-    android:background="@color/back_final">
+    android:background="@color/final_background_app">
 
     <TextView
         android:id="@+id/info_title"

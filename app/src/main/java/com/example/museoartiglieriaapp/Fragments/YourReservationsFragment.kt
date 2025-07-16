@@ -25,6 +25,12 @@ class YourReservationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Gestione del pulsante indietro
+        view.findViewById<View>(R.id.backButton)?.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.reservationsRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = ReservationAdapter()
@@ -66,4 +72,4 @@ class YourReservationsFragment : Fragment() {
         val dateText: TextView = view.findViewById(R.id.dateText)
         val ticketImage: ImageView = view.findViewById(R.id.ticketImage)
     }
-} 
+}

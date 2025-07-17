@@ -39,4 +39,16 @@
         android:paddingBottom="8dp"
         android:clipToPadding="false"/>
 
+    <TextView
+        android:id="@+id/emptyReservationsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You don't have any bookings available yet"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:visibility="gone"
+        android:paddingTop="32dp"
+        android:paddingBottom="16dp"/>
+
 </LinearLayout>

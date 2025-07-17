@@ -35,6 +35,11 @@ class CategoryListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
+        // Gestione del pulsante indietro
+        view.findViewById<View>(R.id.backButton)?.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+        
         val category = arguments?.getString(ARG_CATEGORY) ?: "tanks"
         val items = StorageRepository.getItemsByCategory(category)
         

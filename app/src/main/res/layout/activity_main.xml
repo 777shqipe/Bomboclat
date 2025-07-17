@@ -26,7 +26,8 @@
             app:fabCradleRoundedCornerRadius="10dp"
             app:fabCradleVerticalOffset="0dp"
             app:contentInsetStart="0dp"
-            app:contentInsetEnd="0dp">
+            app:contentInsetEnd="0dp"
+            app:fabAlignmentMode="center">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation_view"
@@ -42,6 +43,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_camera"
+            style="@style/CenteredFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/camera_nav"

@@ -38,6 +38,68 @@ class NewReservationFragment : Fragment() {
         val nameInput = view.findViewById<android.widget.EditText>(R.id.nameInput)
         val emailInput = view.findViewById<android.widget.EditText>(R.id.emailInput)
         val phoneInput = view.findViewById<android.widget.EditText>(R.id.phoneInput)
+        val scrollView = view.findViewById<android.widget.ScrollView>(R.id.my_scroll)
+        
+        // Gestione tastiera per i campi di input
+        val inputFields = listOf(nameInput, emailInput, phoneInput)
+        inputFields.forEach { editText ->
+            editText.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    // Scrolla al campo quando riceve il focus con calcolo più preciso
+                    scrollView.post {
+                        val editTextLocation = IntArray(2)
+                        editText.getLocationInWindow(editTextLocation)
+                        val editTextTop = editTextLocation[1]
+                        
+                        // Calcola la posizione ottimale per mostrare il campo
+                        val screenHeight = resources.displayMetrics.heightPixels
+                        val keyboardHeight = (screenHeight * 0.4).toInt() // Stima altezza tastiera
+                        val availableHeight = screenHeight - keyboardHeight
+                        
+                        // Più spazio per il campo del telefono (ultimo campo)
+                        val targetPosition = if (editText.id == R.id.phoneInput) {
+                            editTextTop - (availableHeight / 4) // Ancora più spazio per il telefono
+                        } else {
+                            editTextTop - (availableHeight / 3) // Spazio normale per gli altri
+                        }
+                        
+                        // Assicurati che non scrolli troppo in alto
+                        val maxScroll = scrollView.getChildAt(0).height - scrollView.height
+                        val finalPosition = if (targetPosition < 0) 0 else minOf(targetPosition, maxScroll)
+                        
+                        scrollView.smoothScrollTo(0, finalPosition)
+                    }
+                }
+            }
+        }
+        
+        // Listener aggiuntivo per gestire meglio la tastiera
+        view.viewTreeObserver.addOnGlobalLayoutListener {
+            val r = android.graphics.Rect()
+            view.getWindowVisibleDisplayFrame(r)
+            val screenHeight = view.rootView.height
+            val keyboardHeight = screenHeight - r.bottom
+            
+            if (keyboardHeight > screenHeight * 0.15) {
+                // Tastiera è visibile, assicurati che il campo attivo sia visibile
+                val focusedView = view.findFocus()
+                if (focusedView is android.widget.EditText) {
+                    scrollView.post {
+                        val editTextLocation = IntArray(2)
+                        focusedView.getLocationInWindow(editTextLocation)
+                        val editTextTop = editTextLocation[1]
+                        val targetPosition = editTextTop - keyboardHeight - 200 // Più spazio sopra
+                        
+                        // Assicurati che non scrolli troppo in alto
+                        val maxScroll = scrollView.getChildAt(0).height - scrollView.height
+                        val finalPosition = if (targetPosition < 0) 0 else minOf(targetPosition, maxScroll)
+                        
+                        scrollView.smoothScrollTo(0, finalPosition)
+                    }
+                }
+            }
+        }
+
         view.findViewById<MaterialButton>(R.id.checkoutButton).setOnClickListener {
             val name = nameInput.text?.toString()?.trim() ?: ""
             val email = emailInput.text?.toString()?.trim() ?: ""
@@ -130,6 +192,12 @@ class NewReservationFragment : Fragment() {
             }
         }
         // Imposta colore testo default all'avvio
+        cards.forEach { card ->
+            val t1 = card.findViewById<TextView>(R.id.card_single_text) ?: card.findViewById<TextView>(R.id.card_family_text) ?: card.findViewById<TextView>(R.id.card_vip_text)
+            val t2 = card.findViewById<TextView>(R.id.card_single_price) ?: card.findViewById<TextView>(R.id.card_family_price) ?: card.findViewById<TextView>(R.id.card_vip_price)
+            t1?.setTextColor(textColorDefault)
+            t2?.setTextColor(textColorDefault)
+        }
         setCardTextColor(cardSingle)
 
         // Logica selezione orari
@@ -164,8 +232,8 @@ class NewReservationFragment : Fragment() {
         timeButtons.forEach { it.setTextColor(textColorDefault) }
 
         // Dropdown location logic
-        val dropdownButton = view.findViewById<androidx.cardview.widget.CardView>(R.id.dropdownButton)
-        val dropdownMenu = view.findViewById<androidx.cardview.widget.CardView>(R.id.dropdownMenu)
+        val dropdownButton = view.findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.dropdownButton)
+        val dropdownMenu = view.findViewById<com.google.android.material.card.MaterialCardView>(R.id.dropdownMenu)
         val dropdownTitle = view.findViewById<TextView>(R.id.dropdownTitle)
         val arrowIcon = view.findViewById<ImageView>(R.id.arrowIcon)
         val location1 = view.findViewById<TextView>(R.id.location1)
@@ -205,6 +273,40 @@ class NewReservationFragment : Fragment() {
         view.findViewById<View>(R.id.backButton)?.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val view = view ?: return
+        val cardSingle = view.findViewById<MaterialCardView>(R.id.card_single)
+        val cardFamily = view.findViewById<MaterialCardView>(R.id.card_family)
+        val cardVip = view.findViewById<MaterialCardView>(R.id.card_vip)
+        val cards = listOf(cardSingle, cardFamily, cardVip)
+        val textColorDefault = ContextCompat.getColor(requireContext(), R.color.black)
+        val textColorSelected = ContextCompat.getColor(requireContext(), R.color.white)
+        
+        // Duplico la logica di setCardTextColor
+        fun setCardTextColor(selectedCard: MaterialCardView) {
+            val allCards = listOf(cardSingle, cardFamily, cardVip)
+            allCards.forEach { card ->
+                val t1 = card.findViewById<TextView>(R.id.card_single_text) ?: card.findViewById<TextView>(R.id.card_family_text) ?: card.findViewById<TextView>(R.id.card_vip_text)
+                val t2 = card.findViewById<TextView>(R.id.card_single_price) ?: card.findViewById<TextView>(R.id.card_family_price) ?: card.findViewById<TextView>(R.id.card_vip_price)
+                t1?.setTextColor(textColorDefault)
+                t2?.setTextColor(textColorDefault)
+            }
+            val t1 = selectedCard.findViewById<TextView>(R.id.card_single_text) ?: selectedCard.findViewById<TextView>(R.id.card_family_text) ?: selectedCard.findViewById<TextView>(R.id.card_vip_text)
+            val t2 = selectedCard.findViewById<TextView>(R.id.card_single_price) ?: selectedCard.findViewById<TextView>(R.id.card_family_price) ?: selectedCard.findViewById<TextView>(R.id.card_vip_price)
+            t1?.setTextColor(textColorSelected)
+            t2?.setTextColor(textColorSelected)
+        }
+        
+        cards.forEach { card ->
+            val t1 = card.findViewById<TextView>(R.id.card_single_text) ?: card.findViewById<TextView>(R.id.card_family_text) ?: card.findViewById<TextView>(R.id.card_vip_text)
+            val t2 = card.findViewById<TextView>(R.id.card_single_price) ?: card.findViewById<TextView>(R.id.card_family_price) ?: card.findViewById<TextView>(R.id.card_vip_price)
+            t1?.setTextColor(textColorDefault)
+            t2?.setTextColor(textColorDefault)
+        }
+        setCardTextColor(cardSingle)
     }
 
     private fun getSelectedDate(datePicker: DatePicker): String {

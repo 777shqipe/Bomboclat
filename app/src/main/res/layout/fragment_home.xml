@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/roboto_mono"
                 android:text="@string/home_title"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -47,7 +47,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/roboto_mono"
                 android:text="@string/artillery_museum_title"
                 android:textColor="@color/black"
                 android:textSize="30sp"
@@ -116,7 +116,7 @@
                             android:text="@string/corso_lecce_description"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            android:fontFamily="@font/inter" />
+                            android:fontFamily="@font/quattrocento_sans" />
                     </LinearLayout>
                 </FrameLayout>
             </com.google.android.material.card.MaterialCardView>

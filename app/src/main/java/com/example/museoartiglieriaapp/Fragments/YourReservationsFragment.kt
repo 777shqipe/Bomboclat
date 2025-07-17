@@ -35,12 +35,19 @@ class YourReservationsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = ReservationAdapter()
         recyclerView.adapter = adapter
-        adapter.updateReservations(ReservationRepository.getReservations())
+        val emptyText = view.findViewById<TextView>(R.id.emptyReservationsText)
+        val reservations = ReservationRepository.getReservations()
+        adapter.updateReservations(reservations)
+        emptyText.visibility = if (reservations.isEmpty()) View.VISIBLE else View.GONE
     }
 
     override fun onResume() {
         super.onResume()
-        adapter.updateReservations(ReservationRepository.getReservations())
+        val view = view ?: return
+        val emptyText = view.findViewById<TextView>(R.id.emptyReservationsText)
+        val reservations = ReservationRepository.getReservations()
+        adapter.updateReservations(reservations)
+        emptyText.visibility = if (reservations.isEmpty()) View.VISIBLE else View.GONE
     }
 
     class ReservationAdapter : RecyclerView.Adapter<ReservationViewHolder>() {

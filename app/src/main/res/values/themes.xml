@@ -3,6 +3,25 @@
     <style name="Base.Theme.MuseoArtiglieriaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        
+        <!-- Font personalizzati per l'app - applicazione diretta -->
+        <item name="android:fontFamily">@font/quattrocento_sans</item>
+        <item name="fontFamily">@font/quattrocento_sans</item>
+        
+        <!-- Stili specifici per titoli -->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.App.Headline</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.App.Headline</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.App.Headline</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.App.Headline</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.App.Title</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.App.Title</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.App.Subtitle</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.App.Body</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.App.Body</item>
+        <item name="textAppearanceButton">@style/TextAppearance.App.Title</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.App.Body</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.App.Body</item>
     </style>
 
     <style name="Theme.MuseoArtiglieriaApp" parent="Base.Theme.MuseoArtiglieriaApp" />

@@ -52,15 +52,28 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="80dp"
                 android:layout_marginBottom="8dp"
                 android:text="Institutional headquarters"
                 android:textColor="@color/white"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/museum_address"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ttsButton"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ttsButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Leggi informazioni"
+                android:src="@android:drawable/ic_btn_speak_now"
+                app:tint="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/museum_address"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/museum_title" />
 
             <TextView
                 android:id="@+id/museum_address"
@@ -168,18 +181,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/guide_map_title"
                 android:contentDescription="Guide Map" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/ttsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_btn_speak_now"
-                android:contentDescription="Leggi informazioni"
-                app:layout_constraintTop_toTopOf="@id/header_image"
-                app:layout_constraintEnd_toEndOf="@id/header_image"
-                android:layout_margin="12dp"
-                android:backgroundTint="@color/white"
-                android:tint="@color/black"
-                />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

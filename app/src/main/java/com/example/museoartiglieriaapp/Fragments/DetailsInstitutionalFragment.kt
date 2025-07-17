@@ -41,7 +41,7 @@ class DetailsInstitutionalFragment : Fragment() {
         }
 
         // Inizializzazione delle view per il TTS
-        val ttsButton = view.findViewById<View>(R.id.ttsButton)
+        val ttsButton = view.findViewById<ImageButton>(R.id.ttsButton)
         val title = view.findViewById<TextView>(R.id.museum_title)
         val address = view.findViewById<TextView>(R.id.museum_address)
         val desc1 = view.findViewById<TextView>(R.id.description_part1)

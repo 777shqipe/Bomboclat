@@ -21,29 +21,31 @@ class StorageArchiveFragment : Fragment() {
 
         // Mappa nome categoria -> url immagine
         val artifactImageUrls = mapOf(
-            "TANKS" to "https://images8.alphacoders.com/673/673092.png",
-            "PORTABLE_FIREARMS" to "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSgFMrKsLjcqgaN9RzKxYM30ChJf2DdW4-_FTADBx4-mlYk3yen",
-            "EDGED_WEAPONS" to "https://www.kubel1943.it/foto/pompire.jpg",
-            "MILITARY_EQUIPMENT" to "https://www.militariainroma.com/wp-content/uploads/2025/04/IMG_9350.jpeg"
+            "TANKS" to "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Usht-Steam-Tank-Tracklaying.jpg/640px-Usht-Steam-Tank-Tracklaying.jpg",
+            "PORTABLE_FIREARMS" to "https://i0.wp.com/laststandonzombieisland.com/wp-content/uploads/2023/10/ardinti-jager-austrian-kuk-1917-mountin-alpine-maximilian-von-poosch-gablenz-1872-1968-hgm-vienna.jpg?fit=1800,1261&ssl=1",
+            "EDGED_WEAPONS" to "https://edgedweapons.nl/images/slideshow/slider-4.jpg",
+            "MILITARY_EQUIPMENT" to "https://images-cdn.bridgemanimages.com/api/1.0/image/150.ETE.43307840.7055475/4867155.jpg"
         )
 
-        // Carico le immagini nelle card
+// Carico le immagini nelle card
         Glide.with(this)
             .load(artifactImageUrls["TANKS"])
             .placeholder(R.drawable.placeholder_shape)
-            .into(view.findViewById(R.id.image_card1))
+            .into(view.findViewById(R.id.image_tanks))
         Glide.with(this)
             .load(artifactImageUrls["PORTABLE_FIREARMS"])
             .placeholder(R.drawable.placeholder_shape)
-            .into(view.findViewById(R.id.image_card2))
+            .into(view.findViewById(R.id.image_portable_firearms))
         Glide.with(this)
             .load(artifactImageUrls["EDGED_WEAPONS"])
             .placeholder(R.drawable.placeholder_shape)
-            .into(view.findViewById(R.id.image_card4))
+            .into(view.findViewById(R.id.image_edged_weapons))
         Glide.with(this)
             .load(artifactImageUrls["MILITARY_EQUIPMENT"])
             .placeholder(R.drawable.placeholder_shape)
-            .into(view.findViewById(R.id.image_card5))
+            .into(view.findViewById(R.id.image_military_equipment))
+
+
 
         // Listener per le 4 card
         view.findViewById<View>(R.id.card1).setOnClickListener {

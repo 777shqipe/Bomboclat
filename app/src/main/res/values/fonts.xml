@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Font predefiniti per l'app -->
+    <string name="font_family_title">@font/roboto_mono</string>
+    <string name="font_family_body">@font/quattrocento_sans</string>
+</resources> 
